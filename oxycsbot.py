@@ -8,22 +8,47 @@ class OxyCSBot(ChatBot):
     """A simple chatbot that directs students to office hours of CS professors."""
 
     STATES = [
-        'waiting',
-        'specific_faculty',
-        'unknown_faculty',
-        'unrecognized_faculty',
+        'waiting to ask question',
+        'have already asked the question',
+        'argument_in_process',
+        'argument_completed',
+        'unrecognized_state',
     ]
 
     TAGS = {
         # intent
-        'office hours': 'office-hours',
-        'OH': 'office-hours',
-        'help': 'office-hours',
-
-        # professors
-        'kathryn': 'kathryn',
-        'leonard': 'kathryn',
-        'justin': 'justin',
+        'veganism': 'vegan',
+        'non-animal products': 'vegan',
+        'diet': 'vegan',
+        'food': 'vegan',
+        'eco food': 'vegan',
+        'eco-friendly': 'vegan',
+        'enviromental' : 'vegan',
+        'sustainable' : 'vegan',
+        
+        # the answere to the vegan question 
+        'I am vegan' : 'sucess',
+        'might' : 'sucess',
+        'possibly': 'sucess',
+        'maybe': 'sucess',
+        'yes': 'sucess',
+        'yeah': 'sucess',
+        'yep': 'sucess',
+        'of course': 'sucess',
+        'why not': 'sucess',
+        'could be': 'sucess',
+        'I am not vegan' : 'failure',
+        'not really' : 'failure',
+        'never' : 'failure',
+        'probably no' : 'failure',
+        'no' : 'failure',
+        'nope' : 'failure',
+        
+        
+        # argument
+        'ethics': '',
+        'ethical': '',
+        '': '',
         'li': 'justin',
         'jeff': 'jeff',
         'miller': 'jeff',
@@ -33,23 +58,19 @@ class OxyCSBot(ChatBot):
         'yalcinalp': 'umit',
 
         # generic
-        'thanks': 'thanks',
+        'thanks':'thank you',
+        'have a great day': 'have a great day', 
+        'have a great day': 'success', 
         'okay': 'success',
+        'I agree' : 'success',
         'bye': 'success',
+        'I am not sure' : 'failure',
+        'I do not agree' : 'failure',
         'yes': 'yes',
         'yep': 'yes',
         'no': 'no',
         'nope': 'no',
     }
-
-    PROFESSORS = [
-        'celia',
-        'hsing-hau',
-        'jeff',
-        'justin',
-        'kathryn',
-        'umit',
-    ]
 
     def __init__(self):
         """Initialize the OxyCSBot.
@@ -58,9 +79,9 @@ class OxyCSBot(ChatBot):
         been identified.
         """
         super().__init__(default_state='waiting')
-        self.professor = None
+        //self.professor = None
 
-    def get_office_hours(self, professor):
+    def get_responese(self, tag):
         """Find the office hours of a professor.
 
         Arguments:
