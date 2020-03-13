@@ -9,10 +9,10 @@ class OxyCSBot(ChatBot):
     # Can Sara make edits? Please say it is so
 
     STATES = [
-        'waiting to ask question',
-        'have already asked the question',
-        'argument_in_process',
-        'argument_completed',
+        'asking_question',
+        'vegan',
+        'non-vegan',
+        'no-opinion',
         'unrecognized_state',
     ]
 
@@ -79,7 +79,7 @@ class OxyCSBot(ChatBot):
         The `professor` member variable stores whether the target professor has
         been identified.
         """
-        super().__init__(default_state='waiting')
+        super().__init__(default_state='asking_question')
         //self.professor = None
 
     def get_responese(self, tag):
