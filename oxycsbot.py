@@ -6,6 +6,7 @@ from chatbot import ChatBot
 
 class OxyCSBot(ChatBot):
     """A simple chatbot that directs students to office hours of CS professors."""
+    # Can Sara make edits? Please say it is so
 
     STATES = [
         'waiting to ask question',
@@ -25,8 +26,8 @@ class OxyCSBot(ChatBot):
         'eco-friendly': 'vegan',
         'enviromental' : 'vegan',
         'sustainable' : 'vegan',
-        
-        # the answere to the vegan question 
+
+        # the answere to the vegan question
         'I am vegan' : 'sucess',
         'might' : 'sucess',
         'possibly': 'sucess',
@@ -43,8 +44,8 @@ class OxyCSBot(ChatBot):
         'probably no' : 'failure',
         'no' : 'failure',
         'nope' : 'failure',
-        
-        
+
+
         # argument
         'ethics': '',
         'ethical': '',
@@ -59,8 +60,8 @@ class OxyCSBot(ChatBot):
 
         # generic
         'thanks':'thank you',
-        'have a great day': 'have a great day', 
-        'have a great day': 'success', 
+        'have a great day': 'have a great day',
+        'have a great day': 'success',
         'okay': 'success',
         'I agree' : 'success',
         'bye': 'success',
