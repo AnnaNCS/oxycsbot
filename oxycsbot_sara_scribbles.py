@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
-"""A simple chatbot that directs students to office hours of CS professors."""
+"""A simple chatbot that debates with the user about veganism)"""
 
+import random # https://pynative.com/python-random-choice/
 from chatbot import ChatBot
 
 class OxyCSBot(ChatBot):
 
     STATES = [
         'waiting',
-        'neutral_stance',
+        # 'neutral_stance',
         'pro_vegan_stance',
         'anti_vegan_stance',
     ]
@@ -19,6 +20,8 @@ class OxyCSBot(ChatBot):
         'vegetarian': 'veganism',
         'diet': 'veganism',
 
+        # DETERMINE BOT STANCE BASED ON USER STANCE
+
         # pro-vegan
         'pro': 'pro_vegan_stance',
         'animal cruelty': 'pro_vegan_stance',
@@ -29,6 +32,8 @@ class OxyCSBot(ChatBot):
         'global warming': 'pro_vegan_stance',
         'environmentalism': 'pro_vegan_stance',
         'save the environment': 'pro_vegan_stance',
+        'eco-friendly': 'pro_vegan_stance',
+        'sustainable': 'pro_vegan_stance',
 
         # anti-vegan
         'con': 'anti_vegan_stance',
@@ -40,6 +45,11 @@ class OxyCSBot(ChatBot):
         'soil erosion': 'anti_vegan_stance',
         'agricultural stress': 'anti_vegan_stance',
         'omnivore': 'anti_vegan_stance',
+        'unnatural': 'anti_vegan_stance',
+
+
+        # GIVE ARGUMENT DEPENDING ON THE USER'S RESPONSE
+        # ex. 'like burgers': 'arg_a4', ...
 
         # generic
         'thanks': 'thanks',
@@ -54,7 +64,7 @@ class OxyCSBot(ChatBot):
     STANCES = [
         'pro_vegan',
         'anti_vegan',
-        'neutral',
+        # 'neutral',
     ]
 
     # bot has pro-vegan stance
@@ -73,21 +83,23 @@ class OxyCSBot(ChatBot):
         'arg_yummy_meat',
     ]
 
+    ALL_ARGS = {
+        'arg_p1': 'arg_health',
+        'arg_p2': 'arg_environment',
+        'arg_p3': 'arg_poverty',
+        'arg_p4': 'arg_animal_rights',
+        'arg_a1': 'arg_agricultural_stress',
+        'arg_a2': 'arg_circle_of_life',
+        'arg_a3': 'arg_job_loss',
+        'arg_a4': 'arg_yummy_meat',
+    }
+
     FILLER_STATEMENTS = [
         'Yeah, I’m not buying it. Could you elaborate?',
         'Hmm, okay I see your point. Go on.',
     ]
 
-    # USED_ARGS = [
-    #     'arg_health',
-    #     'arg_environment',
-    #     'arg_poverty',
-    #     'arg_animal_rights',
-    #     'arg_agricultural_stress',
-    #     'arg_circle_of_life',
-    #     'arg_job_loss',
-    #     'arg_yummy_meat',
-    # ]
+
 
     def __init__(self):
         """Initialize the OxyCSBot."""
@@ -111,23 +123,34 @@ class OxyCSBot(ChatBot):
         self.stance = None
         self.used_arguments = []
 
-        # Use tags and message to determine user stance - bot's stance will be the opposite, or if user is neutral the bot will randomly choose a stance
+        # Use tags and message to determine user stance, then define bot's stance as the opposite
+        # If user is neutral/has no opinion, the bot will randomly choose between pro and con
 
         if 'veganism' in tags:
             for stance in self.STANCES:
                 # If user is pro-vegan, bot takes anti-vegan stance
                 if 'pro_vegan_stance' in tags:
                     self.stance = 'anti_vegan'
+
+                    # Determine the first argument the bot will use, add to used_arguments
+
                     return self.go_to_state('anti_vegan_stance')
 
                 # If user is anti-vegan, bot takes pro-vegan stance
                 elif 'anti_vegan_stance' in tags:
                     self.stance = 'pro_vegan'
+
+                    # Determine the first argument the bot will use, add to used_arguments
+
                     return self.go_to_state('pro_vegan_stance')
 
                 # If user is neutral, bot chooses randomly between pro and anti vegan stances
                 else:
                     # Choose stance randomly
+                    # bot_stances = ['pro_vegan_stance', 'anti_vegan_stance']
+                    # self.stance = random.choice(bot_stances)
+                    self.stance = random.choice(STANCES)
+
                     # Or should bot ask more questions to determine user stance?
         elif 'thanks' in tags:
             return self.finish('thanks')
@@ -137,33 +160,69 @@ class OxyCSBot(ChatBot):
 
     # ******************** GENERAL STATES (may not be necessary?) ********************
 
-    def get_next_arg(self, stance):
-        return argument
+    # This would be the default 'waiting' state
+    def wait_for_user_response(self, message, tags):
+        response = "testing, send help"
+        return response
+
+
+    # def get_first_arg(self, stance):
+    #         if stance == 'pro_vegan_stance':
+    #             # choose from ARGS_PRO
+    #         else
+    #             # choose from ARGS_CON
+    #     return argument
+
+    # def get_next_arg(self, stance):
+    #     return argument
 
     def get_neutral_statement(self):
-        return statement
+        # Choose a neutral statement randomly
+        response = "testing, send help"
+        return response
 
-    def end_convo(self):
-        return something
+    # def end_convo(self):
+    #     return something
 
 
     # ******************** PRO-VEGAN STATES ********************
 
     def on_enter_pro_vegan_stance(self):
-        # Choose one of the arguments for that stance, add to list of used arguments
-        # On second or third argument add random neutral statement?
+        response = "testing, send help"
         return response
 
     def respond_from_pro_vegan_stance(self, message, tags):
+
+        # I think this is the equivalent of a "wait" state, it's just specific to the stance
+
+
+        # # Get current argument
+        # current_arg = random.choice(ARGS_PRO)
+
+        # # Check against used arguments
+        # while current_arg in self.used_arguments:
+        #     current_arg = random.choice(ARGS_PRO)
+
+        # if ARGS_PRO in used_arguments:
+
+        # Add random neutral statement if used_arguments has 3 elements
+
+        # If there are still arguments, go to wait_for_user_response state
+
+        # If all arguments are used, end conversation
+
+        response = "testing, send help"
         return response
 
 
     # ******************** ANTI-VEGAN STATES ********************
 
     def on_enter_anti_vegan_stance(self):
+        response = "testing, send help"
         return response
 
     def respond_from_anti_vegan_stance(self, message, tags):
+        response = "testing, send help"
         return response
 
 
