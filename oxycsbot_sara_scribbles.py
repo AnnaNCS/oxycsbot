@@ -19,6 +19,7 @@ class OxyCSBot(ChatBot):
         'vegan': 'veganism',
         'vegetarian': 'veganism',
         'diet': 'veganism',
+        
 
         # DETERMINE BOT STANCE BASED ON USER STANCE
 
@@ -38,24 +39,28 @@ class OxyCSBot(ChatBot):
         # anti-vegan
         'con': 'anti_vegan_stance',
         'anti': 'anti_vegan_stance',
-        'meat is yummy': 'anti_vegan_stance',
+        'i like meat': 'anti_vegan_stance',
         'job loss': 'anti_vegan_stance',
         'loss of jobs': 'anti_vegan_stance',
+        'unemployment': 'anti_vegan_stance',
         'circle of life': 'anti_vegan_stance',
         'soil erosion': 'anti_vegan_stance',
         'agricultural stress': 'anti_vegan_stance',
         'omnivore': 'anti_vegan_stance',
         'unnatural': 'anti_vegan_stance',
+        'against natur' : 'anti_vegan_stance', 
 
 
         # GIVE ARGUMENT DEPENDING ON THE USER'S RESPONSE
         # ex. 'like burgers': 'arg_a4', ...
 
         # generic
-        'thanks': 'thanks',
+        'thanks': 'thank you',
+        'thank you': 'thank you',
         'okay': 'success',
         'bye': 'success',
         'yes': 'yes',
+        'yeah' : 'yes',
         'yep': 'yes',
         'no': 'no',
         'nope': 'no',
@@ -80,7 +85,7 @@ class OxyCSBot(ChatBot):
         'arg_agricultural_stress',
         'arg_circle_of_life',
         'arg_job_loss',
-        'arg_yummy_meat',
+        'arg_meat_taste',
     ]
 
     ALL_ARGS = {
@@ -91,7 +96,7 @@ class OxyCSBot(ChatBot):
         'arg_a1': 'arg_agricultural_stress',
         'arg_a2': 'arg_circle_of_life',
         'arg_a3': 'arg_job_loss',
-        'arg_a4': 'arg_yummy_meat',
+        'arg_a4': 'arg_meat_taste',
     }
 
     FILLER_STATEMENTS = [
