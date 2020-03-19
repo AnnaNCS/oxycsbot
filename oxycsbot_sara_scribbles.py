@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""A simple chatbot that debates with the user about veganism)"""
+"""A simple chatbot that debates with the user about veganism"""
 
-import random # https://pynative.com/python-random-choice/
+# import random # https://pynative.com/python-random-choice/
 from chatbot import ChatBot
 
 class OxyCSBot(ChatBot):
@@ -18,27 +18,33 @@ class OxyCSBot(ChatBot):
         'veganism': 'veganism',
         'vegan': 'veganism',
         'vegetarian': 'veganism',
+        'non-animal products': 'veganism',
         'diet': 'veganism',
+        'food': 'veganism',
 
         # DETERMINE BOT STANCE BASED ON USER STANCE
 
         # pro-vegan
         'pro': 'pro_vegan_stance',
-        'animal cruelty': 'pro_vegan_stance',
+        'animal cruelty': 'pro_vegan_stance', # maybe instead of stance do the specific argument instead?
         'healthy': 'pro_vegan_stance',
         'better for you': 'pro_vegan_stance',
         'poverty': 'pro_vegan_stance',
         'alleviate': 'pro_vegan_stance',
         'global warming': 'pro_vegan_stance',
         'environmentalism': 'pro_vegan_stance',
+        'environmental': 'pro_vegan_stance',
         'save the environment': 'pro_vegan_stance',
         'eco-friendly': 'pro_vegan_stance',
         'sustainable': 'pro_vegan_stance',
+        'ethics': 'pro_vegan_stance',
+        'ethical': 'pro_vegan_stance',
+        'unethical': 'pro_vegan_stance',
+        'eco food': 'pro_vegan_stance',
 
         # anti-vegan
         'con': 'anti_vegan_stance',
         'anti': 'anti_vegan_stance',
-        'meat is yummy': 'anti_vegan_stance',
         'job loss': 'anti_vegan_stance',
         'loss of jobs': 'anti_vegan_stance',
         'circle of life': 'anti_vegan_stance',
@@ -46,19 +52,45 @@ class OxyCSBot(ChatBot):
         'agricultural stress': 'anti_vegan_stance',
         'omnivore': 'anti_vegan_stance',
         'unnatural': 'anti_vegan_stance',
+        'meat is yummy': 'anti_vegan_stance',
+        'burgers': 'anti_vegan_stance',
+        'steak': 'anti_vegan_stance',
+        'ribs': 'anti_vegan_stance',
+        'barbecue': 'anti_vegan_stance',
+        'bbq': 'anti_vegan_stance',
 
+
+
+        # neutral tags?
 
         # GIVE ARGUMENT DEPENDING ON THE USER'S RESPONSE
         # ex. 'like burgers': 'arg_a4', ...
 
         # generic
         'thanks': 'thanks',
+        'thank you': 'thanks',
         'okay': 'success',
         'bye': 'success',
         'yes': 'yes',
         'yep': 'yes',
-        'no': 'no',
-        'nope': 'no',
+        'yeah': 'success',
+        # 'no': 'no',
+        # 'nope': 'no',
+        'not really': 'failure',
+        'never': 'failure',
+        'probably no': 'failure',
+        'might' : 'success',
+        'possibly': 'success',
+        'maybe': 'success',
+        'of course': 'success',
+        'why not': 'success',
+        'could be': 'success',
+        'have a great day': 'success',
+        'I agree': 'success',
+        'I am not sure': 'failure',
+        'I do not agree': 'failure',
+        'I am vegan': 'success',
+        'I am not vegan': 'failure',
     }
 
     STANCES = [
