@@ -8,7 +8,6 @@ class OxyCSBot(ChatBot):
 
     STATES = [
         'waiting',
-        # 'neutral_stance',
         'pro_vegan_stance',
         'anti_vegan_stance',
     ]
@@ -98,16 +97,15 @@ class OxyCSBot(ChatBot):
     STANCES = [
         'pro_vegan',
         'anti_vegan',
-        # 'neutral',
     ]
 
     # bot has pro-vegan stance
     ARGS_PRO = [
-         "Being vegan is very good for your health",
-         "Veganism impacts the environment a lot",
-         "Have to write something here",
-         "Aren't you against animal cruelty?",
-        ]
+         'arg_health' : "Being vegan is very good for your health",
+         'arg_environment' : "Veganism impacts the environment a lot",
+         'arg_poverty' : "Have to write something here",
+         'arg_animal_rights' : "Aren't you against animal cruelty?",
+    ]
 
     # bot has anti-vegan stance
     ARGS_CON = {
@@ -135,8 +133,6 @@ class OxyCSBot(ChatBot):
         'Hmm, okay I see your point. Go on.',
     ]
     """
-
-
 
     def __init__(self):
         """Initialize the OxyCSBot."""
