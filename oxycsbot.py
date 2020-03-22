@@ -229,13 +229,13 @@ class OxyCSBot(ChatBot):
 
         # I think this is the equivalent of a "wait" state, it's just specific to the stance
         # Get current argument
-        current_arg = random.choice(ARGS_PRO)
+        #current_arg = random.choice(ARGS_PRO)
 
         # Check against used arguments
-        while current_arg in self.used_arguments:
-             current_arg = random.choice(ARGS_PRO)
+        #while current_arg in self.used_arguments:
+         #    current_arg = random.choice(ARGS_PRO)
 
-        if ARGS_PRO in used_arguments:
+        #if ARGS_PRO in used_arguments:
 
         # Add random neutral statement if used_arguments has 3 elements
 
