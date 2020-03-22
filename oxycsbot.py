@@ -98,6 +98,7 @@ class OxyCSBot(ChatBot):
         'hello': 'hello',
         'sup': 'hello',
         'hallo': 'hello',
+        'hey': 'hello',
     }
 
     STANCES = [
@@ -247,7 +248,7 @@ class OxyCSBot(ChatBot):
         if size(self.used_arguments) == 0:
             return "You don't believe in veganism? How sad."
         else:
-            return self.go_to_state('pro_vegan_stance')
+            return self.go_to_state('respond_from_pro_vegan_stance')
 
     def respond_from_pro_vegan_stance(self, message, tags):
 
@@ -264,8 +265,8 @@ class OxyCSBot(ChatBot):
         else:
             return self.finish('success')
 
-        test = "in respond_from_pro_vegan_stance"
-        return test
+        # test = "in respond_from_pro_vegan_stance"
+        # return test
 
 
     # ******************** ANTI-VEGAN STATES ********************
