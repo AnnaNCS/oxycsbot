@@ -254,19 +254,22 @@ class OxyCSBot(ChatBot):
 
     def respond_from_pro_vegan_stance(self, message, tags):
 
-        # I think this is the equivalent of a "wait" state, it's just specific to the stance
-        # Get current argument
-        #current_arg = random.choice(ARGS_PRO)
+        # Randomly choose current argument
+        current_arg = random.choice(x for x in ARGS_PRO if x not in self.used_arguments)
 
         # Check against used arguments
-        #while current_arg in self.used_arguments:
-        # current_arg = random.choice(ARGS_PRO)
+        # while current_arg in self.used_arguments:
+        #     current_arg = random.choice(ARGS_PRO)
 
         #if ARGS_PRO in used_arguments:
 
         # Add random neutral statement if used_arguments has 3 elements
 
         # If there are still arguments, go to wait_for_user_response state
+        if size(self.used_arguments < 4):
+            self.go_to_state('respond_from_pro_vegan_stance')
+        else:
+            self.finish('thanks')
 
         # If all arguments are used, end conversation
 
