@@ -176,7 +176,7 @@ class OxyCSBot(ChatBot):
         # Use tags and message to determine user stance, then define bot's stance as the opposite
         # If user is neutral/has no opinion, the bot will randomly choose between pro and con
 
-        if 'veganism' in tags:
+        if 'veganism' in tags: #we might wanna delete this part, as it is unnecessary, the conversation is already about veganism 
             for stance in self.STANCES:
                 # If user is pro-vegan, bot takes anti-vegan stance
                 if 'pro_vegan_stance' in tags:
@@ -211,9 +211,9 @@ class OxyCSBot(ChatBot):
     # ******************** GENERAL STATES (may not be necessary?) ********************
 
     # This would be the default 'waiting' state
-    def wait_for_user_response(self, message, tags):
-        response = "testing, send help"
-        return response
+    #def wait_for_user_response(self, message, tags):
+        #response = "testing, send help"
+        #return response
 
 
     # def get_first_arg(self, stance):
@@ -226,10 +226,10 @@ class OxyCSBot(ChatBot):
     # def get_next_arg(self, stance):
     #     return argument
 
-    def get_neutral_statement(self):
+    #def get_neutral_statement(self):
         # Choose a neutral statement randomly
-        response = "testing, send help"
-        return response
+        #response = "testing, send help"
+        #return response
 
     # def end_convo(self):
     #     return something
@@ -239,7 +239,7 @@ class OxyCSBot(ChatBot):
 
     def on_enter_pro_vegan_stance(self):
         response = '\n'.join([
-            f"{random.choice(ARGS_PRO)}",
+            random.choice(list(ARGS_PRO.keys())),
             'Do you know where their office is?',
         ])
         return response
