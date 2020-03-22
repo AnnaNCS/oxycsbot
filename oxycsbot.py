@@ -100,12 +100,12 @@ class OxyCSBot(ChatBot):
     ]
 
     # bot has pro-vegan stance
-    ARGS_PRO = [
-         'arg_health' : "Being vegan is very good for your health",
-         'arg_environment' : "Veganism impacts the environment a lot",
-         'arg_poverty' : "Have to write something here",
-         'arg_animal_rights' : "Aren't you against animal cruelty?",
-    ]
+    ARGS_PRO = {
+         'arg_health': "Being vegan is very good for your health",
+         'arg_environment': "Veganism impacts the environment a lot",
+         'arg_poverty': "Have to write something here",
+         'arg_animal_rights': "Aren't you against animal cruelty?",
+    }
 
     # bot has anti-vegan stance
     ARGS_CON = {
@@ -200,7 +200,7 @@ class OxyCSBot(ChatBot):
                     # Choose stance randomly
                     self.stance = random.choice(STANCES)
 
-                    if self.stance = 'pro_vegan':
+                    if self.stance == 'pro_vegan':
                         return self.go_to_state('pro_vegan_stance')
                     else:
                         return self.go_to_state('anti_vegan_stance')
