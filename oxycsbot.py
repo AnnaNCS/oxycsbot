@@ -98,7 +98,6 @@ class OxyCSBot(ChatBot):
         'hello': 'hello',
         'sup': 'hello',
         'hallo': 'hello',
-        'hey': 'hello',
     }
 
     STANCES = [
