@@ -103,18 +103,18 @@ class OxyCSBot(ChatBot):
 
     # bot has pro-vegan stance
     ARGS_PRO = {
-         'arg_health' : "Being vegan is very good for your health",
-         'arg_environment' : "Veganism impacts the environemtn a lot",
-         'arg_poverty' : "Have to write something here",
-         'arg_animal_rights' : "Aren't you against animal cruelty?",
+         'arg_health': "Being vegan is very good for your health",
+         'arg_environment': "Veganism impacts the environment a lot",
+         'arg_poverty': "Have to write something here",
+         'arg_animal_rights': "Aren't you against animal cruelty?",
     }
 
     # bot has anti-vegan stance
     ARGS_CON = {
-        'arg_agricultural_stress' : "Help me out here" ,
-        'arg_circle_of_life' : "Well, I believe that there is a natural circle of life.",
-        'arg_job_loss' : "Have you ever thought about how many people will loose their jobs?",
-        'arg_meat_taste' : "Don't you know the taste of the meat? Would you ever be able to give it up?",
+        'arg_agricultural_stress': "Help me out here" ,
+        'arg_circle_of_life': "Well, I believe that there is a natural circle of life.",
+        'arg_job_loss': "Have you ever thought about how many people will loose their jobs?",
+        'arg_meat_taste': "Don't you know the taste of the meat? Would you ever be able to give it up?",
     }
 
     """
@@ -266,7 +266,7 @@ class OxyCSBot(ChatBot):
         # If all arguments are used, end conversation
 
         #response = "testing, send help"
-        return "in progress"
+        return current_arg
 
 
     # ******************** ANTI-VEGAN STATES ********************
