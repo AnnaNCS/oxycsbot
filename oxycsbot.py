@@ -207,9 +207,9 @@ class OxyCSBot(ChatBot):
                 self.stance = random.choice(STANCES)
 
                     # Or should bot ask more questions to determine user stance?
-        elif 'thanks' in tags:
+         elif 'thanks' in tags:
             return self.finish('thanks')
-        else:
+         else:
             return self.finish('confused')
 
 
