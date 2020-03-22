@@ -102,12 +102,12 @@ class OxyCSBot(ChatBot):
     ]
 
     # bot has pro-vegan stance
-    ARGS_PRO = {
-         'arg_health': "Being vegan is very good for your health",
-         'arg_environment': "Veganism impacts the environment a lot",
-         'arg_poverty': "Have to write something here",
-         'arg_animal_rights': "Aren't you against animal cruelty?",
-    }
+    ARGS_PRO = [
+         "Being vegan is very good for your health",
+         "Veganism impacts the environment a lot",
+         "Have to write something here",
+         "Aren't you against animal cruelty?",
+        ]
 
     # bot has anti-vegan stance
     ARGS_CON = {
