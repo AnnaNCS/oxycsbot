@@ -280,11 +280,11 @@ class OxyCSBot(ChatBot):
         return response
 
     def respond_from_anti_vegan_stance(self, message, tags):
-        # response = "testing, send help"
-        response = '\n'.join([
-            random.choice(list(ARGS_CON.keys())),
-            'What do you think?',
-        ])
+        response = "testing anti-vegan, send help"
+        # response = '\n'.join([
+        #     random.choice(list(ARGS_CON.keys())),
+        #     'What do you think?',
+        # ])
         return response
 
 
