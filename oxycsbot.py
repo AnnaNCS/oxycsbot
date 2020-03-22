@@ -265,7 +265,7 @@ class OxyCSBot(ChatBot):
         return "You're welcome! It was nice talking to you!"
     
     def finish_confused(self):
-        return "You've lost me, sorry. Guess I need to go brush up on my veganism knowledge!"
+        return "Tell me something about your diet. What do you think of veganism ?"
 
     def finish_success(self):
         return 'Great, I am glad you can see my side of the argument.'
