@@ -272,15 +272,19 @@ class OxyCSBot(ChatBot):
     # ******************** ANTI-VEGAN STATES ********************
 
     def on_enter_anti_vegan_stance(self):
+        # response = '\n'.join([
+        #     random.choice(list(ARGS_CON.keys())),
+        #     'What do you think?',
+        # ])
+        response = "me like meat"
+        return response
+
+    def respond_from_anti_vegan_stance(self, message, tags):
+        # response = "testing, send help"
         response = '\n'.join([
             random.choice(list(ARGS_CON.keys())),
             'What do you think?',
         ])
-        # response = "me like meat"
-        return response
-
-    def respond_from_anti_vegan_stance(self, message, tags):
-        response = "testing, send help"
         return response
 
 
