@@ -92,6 +92,12 @@ class OxyCSBot(ChatBot):
         'I do not agree': 'failure',
         'I am vegan': 'success',
         'I am not vegan': 'failure',
+
+        # greetings
+        'hi': 'hello',
+        'hello': 'hello',
+        'sup': 'hello',
+        'hallo': 'hello',
     }
 
     STANCES = [
@@ -182,22 +188,15 @@ class OxyCSBot(ChatBot):
                 # If user is pro-vegan, bot takes anti-vegan stance
                 if 'pro_vegan_stance' in tags:
                     self.stance = 'anti_vegan'
-                    # print("is in pro vegan stance")
                     return self.go_to_state('anti_vegan_stance')
-
-                    # Determine the first argument the bot will use, add to used_arguments
-                    #
-                    #return self.go_to_state('anti_vegan_stance')
 
                 # If user is anti-vegan, bot takes pro-vegan stance
                 elif 'anti_vegan_stance' in tags:
                     self.stance = 'pro_vegan'
-                    # print("is in anti vegan stance")
                     return self.go_to_state('pro_vegan_stance')
 
                 # If user is neutral, bot chooses randomly between pro and anti vegan stances
                 else:
-                    # Choose stance randomly
                     self.stance = random.choice(STANCES)
 
                     if self.stance == 'pro_vegan':
@@ -207,6 +206,8 @@ class OxyCSBot(ChatBot):
 
         elif 'thanks' in tags:
             return self.finish('thanks')
+        elif 'hello' in tags:
+            return self.finish('hello')
         else:
             return self.finish('confused')
 
@@ -306,6 +307,9 @@ class OxyCSBot(ChatBot):
 
     def finish_thanks(self):
         return "You're welcome! It was nice talking to you!"
+
+    def finish_hello(self):
+        return "Hi there! Have you ever considered veganism?"
 
     def finish_success(self):
         return 'Great, I am glad you can see my side of the argument.'
