@@ -186,7 +186,7 @@ class OxyCSBot(ChatBot):
                 # If user is pro-vegan, bot takes anti-vegan stance
                 if 'pro_vegan_stance' in tags:
                     self.stance = 'anti_vegan'
-                    print("is in pro vegan stance")
+                    # print("is in pro vegan stance")
                     return self.go_to_state('anti_vegan_stance')
 
                     # Determine the first argument the bot will use, add to used_arguments
@@ -196,7 +196,7 @@ class OxyCSBot(ChatBot):
                 # If user is anti-vegan, bot takes pro-vegan stance
                 elif 'anti_vegan_stance' in tags:
                     self.stance = 'pro_vegan'
-                    print("is in anti vegan stance")
+                    # print("is in anti vegan stance")
                     return self.go_to_state('pro_vegan_stance')
 
                 # If user is neutral, bot chooses randomly between pro and anti vegan stances
