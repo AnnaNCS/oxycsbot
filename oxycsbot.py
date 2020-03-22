@@ -102,12 +102,12 @@ class OxyCSBot(ChatBot):
     ]
 
     # bot has pro-vegan stance
-    ARGS_PRO = [
-        'arg_health',
-        'arg_environment',
-        'arg_poverty',
-        'arg_animal_rights',
-    ]
+    ARGS_PRO = {
+         'arg_health' : "Being vegan is very good for your health",
+         'arg_environment' : "Veganism impacts the environemtn a lot",
+         'arg_poverty' : "Have to write something here",
+         'arg_animal_rights' : "Aren't you against the animal cruelty?",
+    }
 
     # bot has anti-vegan stance
     ARGS_CON = [
@@ -142,6 +142,22 @@ class OxyCSBot(ChatBot):
         self.stance = None # bot's stance is determined by user stance
         self.used_arguments = [] # keeps track of which arguments have been used to avoid repetition
 
+    def get_args_pro(self, args_pro):
+        """Pick a pro argument.
+
+        Arguments:
+
+        Returns:
+            str: The argument.
+        """
+        args_con = {
+            'arg_health' : "Being vegan is very good for your health",
+            'arg_environment' : "Veganism impacts the environemtn a lot",
+            'arg_poverty' : "Have to write something here",
+            'arg_animal_rights' : "Aren't you against the animal cruelty?",
+        }
+        return args_con, "What is your opinion"? 
+        
     # "waiting" state functions
 
     def respond_from_waiting(self, message, tags):
@@ -221,21 +237,24 @@ class OxyCSBot(ChatBot):
 
     # ******************** PRO-VEGAN STATES ********************
 
-    # def on_enter_pro_vegan_stance(self):
-    #    response = "testing, send help"
-    #    return response
+    def on_enter_pro_vegan_stance(self):
+        response = '\n'.join([
+            f"{random.choice(ARGS_PRO)}",
+            'Do you know where their office is?',
+        ])
+        return response
 
     def respond_from_pro_vegan_stance(self, message, tags):
 
         # I think this is the equivalent of a "wait" state, it's just specific to the stance
         # Get current argument
-        #current_arg = random.choice(ARGS_PRO)
+        current_arg = random.choice(ARGS_PRO)
 
         # Check against used arguments
-        #while current_arg in self.used_arguments:
-         #    current_arg = random.choice(ARGS_PRO)
+        while current_arg in self.used_arguments:
+            current_arg = random.choice(ARGS_PRO)
 
-        #if ARGS_PRO in used_arguments:
+        if ARGS_PRO in used_arguments:
 
         # Add random neutral statement if used_arguments has 3 elements
 
