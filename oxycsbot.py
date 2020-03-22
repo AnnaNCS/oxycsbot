@@ -181,30 +181,30 @@ class OxyCSBot(ChatBot):
         # Use tags and message to determine user stance, then define bot's stance as the opposite
         # If user is neutral/has no opinion, the bot will randomly choose between pro and con
 
-        #if 'veganism' in tags: #we might wanna delete this part, as it is unnecessary, the conversation is already about veganism 
-        for stance in self.STANCES:
+        if 'veganism' in tags: #we might wanna delete this part, as it is unnecessary, the conversation is already about veganism 
+            for stance in self.STANCES:
                 # If user is pro-vegan, bot takes anti-vegan stance
-            if 'pro_vegan_stance' in tags:
-                self.stance = 'anti_vegan'
+                if 'pro_vegan_stance' in tags:
+                    self.stance = 'anti_vegan'
 
                     # Determine the first argument the bot will use, add to used_arguments
 
-                return self.go_to_state('anti_vegan_stance')
+                    return self.go_to_state('anti_vegan_stance')
 
                 # If user is anti-vegan, bot takes pro-vegan stance
-            elif 'anti_vegan_stance' in tags:
-                self.stance = 'pro_vegan'
+                elif 'anti_vegan_stance' in tags:
+                    self.stance = 'pro_vegan'
 
                     # Determine the first argument the bot will use, add to used_arguments
 
-                return self.go_to_state('pro_vegan_stance')
+                    return self.go_to_state('pro_vegan_stance')
 
                 # If user is neutral, bot chooses randomly between pro and anti vegan stances
-            else:
+                else:
                     # Choose stance randomly
                     # bot_stances = ['pro_vegan_stance', 'anti_vegan_stance']
                     # self.stance = random.choice(bot_stances)
-                self.stance = random.choice(STANCES)
+                    self.stance = random.choice(STANCES)
 
                     # Or should bot ask more questions to determine user stance?
          if 'thanks' in tags:
