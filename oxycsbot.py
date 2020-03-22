@@ -98,6 +98,7 @@ class OxyCSBot(ChatBot):
         'hello': 'hello',
         'sup': 'hello',
         'hallo': 'hello',
+        'hey': 'hello',
     }
 
     STANCES = [
@@ -221,8 +222,8 @@ class OxyCSBot(ChatBot):
 
 
     def get_new_arg(arg_list):
-            argument = random.choice(x for x in arg_list if x not in self.used_arguments)
-            self.used_arguments.append(argument)
+        argument = random.choice(x for x in arg_list if x not in self.used_arguments)
+        self.used_arguments.append(argument)
         return argument
 
     #def get_neutral_statement(self):
