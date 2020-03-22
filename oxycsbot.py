@@ -273,7 +273,7 @@ class OxyCSBot(ChatBot):
         # If all arguments are used, end conversation
 
         test = "in respond_from_pro_vegan_stance"
-        return current_arg
+        return test
 
 
     # ******************** ANTI-VEGAN STATES ********************
