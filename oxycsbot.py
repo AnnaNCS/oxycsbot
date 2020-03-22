@@ -246,8 +246,8 @@ class OxyCSBot(ChatBot):
         #     'What do you think?',
         # ])
         current_arg = random.choice(ARGS_PRO)
-        response = "in on_enter_pro_vegan_stance"
-        return response
+        test = "in on_enter_pro_vegan_stance"
+        return current_arg
 
     def respond_from_pro_vegan_stance(self, message, tags):
 
@@ -267,8 +267,8 @@ class OxyCSBot(ChatBot):
 
         # If all arguments are used, end conversation
 
-        response = "in respond_from_pro_vegan_stance"
-        return response
+        test = "in respond_from_pro_vegan_stance"
+        return current_arg
 
 
     # ******************** ANTI-VEGAN STATES ********************
