@@ -268,7 +268,8 @@ class OxyCSBot(ChatBot):
         # If there are still arguments, go to wait_for_user_response state
         if size(self.used_arguments < 4):
             self.used_arguments.append(current_arg)
-            return self.go_to_state('respond_from_pro_vegan_stance')
+            return current_arg
+            # return self.go_to_state('respond_from_pro_vegan_stance')
 
         # If all arguments are used, end conversation
         else:
@@ -305,7 +306,6 @@ class OxyCSBot(ChatBot):
 
     def finish_thanks(self):
         return "You're welcome! It was nice talking to you!"
-
 
     def finish_success(self):
         return 'Great, I am glad you can see my side of the argument.'
