@@ -262,7 +262,7 @@ class OxyCSBot(ChatBot):
 
         # Check against used arguments
         #while current_arg in self.used_arguments:
-        current_arg = random.choice(ARGS_PRO)
+        # current_arg = random.choice(ARGS_PRO)
 
         #if ARGS_PRO in used_arguments:
 
