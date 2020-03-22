@@ -244,7 +244,8 @@ class OxyCSBot(ChatBot):
         #     random.choice(list(ARGS_PRO.keys())),
         #     'What do you think?',
         # ])
-        response = "I am pro vegan"
+        current_arg = random.choice(ARGS_PRO)
+        response = "in on_enter_pro_vegan_stance"
         return response
 
     def respond_from_pro_vegan_stance(self, message, tags):
@@ -265,8 +266,8 @@ class OxyCSBot(ChatBot):
 
         # If all arguments are used, end conversation
 
-        #response = "testing, send help"
-        return current_arg
+        response = "in respond_from_pro_vegan_stance"
+        return response
 
 
     # ******************** ANTI-VEGAN STATES ********************
@@ -276,11 +277,11 @@ class OxyCSBot(ChatBot):
         #     random.choice(list(ARGS_CON.keys())),
         #     'What do you think?',
         # ])
-        response = "me like meat"
+        response = "in on_enter_anti_vegan_stance"
         return response
 
     def respond_from_anti_vegan_stance(self, message, tags):
-        response = "testing anti-vegan, send help"
+        response = "in respond_from_anti_vegan_stance"
         # response = '\n'.join([
         #     random.choice(list(ARGS_CON.keys())),
         #     'What do you think?',
