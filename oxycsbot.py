@@ -263,7 +263,9 @@ class OxyCSBot(ChatBot):
 
     # ******************** FINISH STATES ********************
     # Send a message then go to the default state (waiting)
-
+    def finish_thanks(self):
+        return "You're welcome! It was nice talking to you!"
+    
     def finish_confused(self):
         return "You've lost me, sorry. Guess I need to go brush up on my veganism knowledge!"
 
@@ -273,8 +275,7 @@ class OxyCSBot(ChatBot):
     def finish_fail(self):
         return "You make some good points. I have to say I think you are right about this."
 
-    def finish_thanks(self):
-        return "You're welcome! It was nice talking to you!"
+   
 
 if __name__ == '__main__':
     OxyCSBot().chat()
