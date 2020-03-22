@@ -245,7 +245,7 @@ class OxyCSBot(ChatBot):
         #     random.choice(list(ARGS_PRO.keys())),
         #     'What do you think?',
         # ])
-        current_arg = random.choice(ARGS_PRO)
+        # current_arg = random.choice(ARGS_PRO)
         # test = "in on_enter_pro_vegan_stance"
         # return test
 
@@ -267,11 +267,12 @@ class OxyCSBot(ChatBot):
 
         # If there are still arguments, go to wait_for_user_response state
         if size(self.used_arguments < 4):
-            self.go_to_state('respond_from_pro_vegan_stance')
-        else:
-            self.finish('thanks')
+            self.used_arguments.append(current_arg)
+            return self.go_to_state('respond_from_pro_vegan_stance')
 
         # If all arguments are used, end conversation
+        else:
+            return self.finish('thanks')
 
         test = "in respond_from_pro_vegan_stance"
         return test
