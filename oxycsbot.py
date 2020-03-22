@@ -104,19 +104,20 @@ class OxyCSBot(ChatBot):
     # bot has pro-vegan stance
     ARGS_PRO = {
          'arg_health' : "Being vegan is very good for your health",
-         'arg_environment' : "Veganism impacts the environment a lot",
+         'arg_environment' : "Veganism impacts the environemtn a lot",
          'arg_poverty' : "Have to write something here",
          'arg_animal_rights' : "Aren't you against animal cruelty?",
     }
 
     # bot has anti-vegan stance
-    ARGS_CON = [
+    ARGS_CON = {
         'arg_agricultural_stress' : "Help me out here" ,
         'arg_circle_of_life' : "Well, I believe that there is a natural circle of life.",
         'arg_job_loss' : "Have you ever thought about how many people will loose their jobs?",
         'arg_meat_taste' : "Don't you know the taste of the meat? Would you ever be able to give it up?",
-    ]
-
+    }
+    
+    """
     ALL_ARGS = {
         'arg_p1': 'arg_health',
         'arg_p2': 'arg_environment',
@@ -127,11 +128,15 @@ class OxyCSBot(ChatBot):
         'arg_a3': 'arg_job_loss',
         'arg_a4': 'arg_meat_taste',
     }
+    
 
     FILLER_STATEMENTS = [
         'Yeah, I’m not buying it. Could you elaborate?',
         'Hmm, okay I see your point. Go on.',
     ]
+    """
+
+
 
     def __init__(self):
         """Initialize the OxyCSBot."""
@@ -140,22 +145,24 @@ class OxyCSBot(ChatBot):
         self.stance = None # bot's stance is determined by user stance
         self.used_arguments = [] # keeps track of which arguments have been used to avoid repetition
 
+    """
     def get_args_pro(self, args_pro):
-        """Pick a pro argument.
+        Pick a pro argument.
 
         Arguments:
 
         Returns:
             str: The argument.
-        """
+       
         args_con = {
             'arg_health' : "Being vegan is very good for your health",
             'arg_environment' : "Veganism impacts the environemtn a lot",
             'arg_poverty' : "Have to write something here",
             'arg_animal_rights' : "Aren't you against the animal cruelty?",
         }
-        return args_con, "What is your opinion"?
-
+        return args_con, "What is your opinion"? 
+    """
+        
     # "waiting" state functions
 
     def respond_from_waiting(self, message, tags):
@@ -171,12 +178,10 @@ class OxyCSBot(ChatBot):
         self.stance = None
         self.used_arguments = []
 
-        return "Currently in waiting state"
-
         # Use tags and message to determine user stance, then define bot's stance as the opposite
         # If user is neutral/has no opinion, the bot will randomly choose between pro and con
 
-        if 'veganism' in tags: #we might wanna delete this part, as it is unnecessary, the conversation is already about veganism
+        if 'veganism' in tags: #we might wanna delete this part, as it is unnecessary, the conversation is already about veganism 
             for stance in self.STANCES:
                 # If user is pro-vegan, bot takes anti-vegan stance
                 if 'pro_vegan_stance' in tags:
@@ -202,9 +207,9 @@ class OxyCSBot(ChatBot):
                     self.stance = random.choice(STANCES)
 
                     # Or should bot ask more questions to determine user stance?
-        elif 'thanks' in tags:
+         elif 'thanks' in tags:
             return self.finish('thanks')
-        else:
+         else:
             return self.finish('confused')
 
 
@@ -240,7 +245,7 @@ class OxyCSBot(ChatBot):
     def on_enter_pro_vegan_stance(self):
         response = '\n'.join([
             random.choice(list(ARGS_PRO.keys())),
-            'Do you know where their office is?',
+            'What do you think?',
         ])
         return response
 
@@ -248,13 +253,13 @@ class OxyCSBot(ChatBot):
 
         # I think this is the equivalent of a "wait" state, it's just specific to the stance
         # Get current argument
-        current_arg = random.choice(ARGS_PRO)
+        #current_arg = random.choice(ARGS_PRO)
 
         # Check against used arguments
-        while current_arg in self.used_arguments:
+        #while current_arg in self.used_arguments:
             current_arg = random.choice(ARGS_PRO)
 
-        if ARGS_PRO in used_arguments:
+        #if ARGS_PRO in used_arguments:
 
         # Add random neutral statement if used_arguments has 3 elements
 
@@ -262,14 +267,17 @@ class OxyCSBot(ChatBot):
 
         # If all arguments are used, end conversation
 
-        response = "testing, send help"
-        return response
+        #response = "testing, send help"
+        return "in progress"
 
 
     # ******************** ANTI-VEGAN STATES ********************
 
     def on_enter_anti_vegan_stance(self):
-        response = "testing, send help"
+        response = '\n'.join([
+            random.choice(list(ARGS_CON.keys())),
+            'What do you think?',
+        ])
         return response
 
     def respond_from_anti_vegan_stance(self, message, tags):
@@ -277,20 +285,23 @@ class OxyCSBot(ChatBot):
         return response
 
 
+
     # ******************** FINISH STATES ********************
     # Send a message then go to the default state (waiting)
-    def finish_thanks(self):
-        return "You're welcome! It was nice talking to you!"
-
     def finish_confused(self):
         return "Tell me something about your diet. What do you think of veganism?"
-
+ 
+    def finish_thanks(self):
+        return "You're welcome! It was nice talking to you!"
+    
+    
     def finish_success(self):
         return 'Great, I am glad you can see my side of the argument.'
 
     def finish_fail(self):
         return "You make some good points. I have to say I think you are right about this."
 
+   
 
 if __name__ == '__main__':
     OxyCSBot().chat()
