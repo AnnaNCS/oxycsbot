@@ -220,15 +220,10 @@ class OxyCSBot(ChatBot):
         #return response
 
 
-    # def get_first_arg(self, stance):
-    #         if stance == 'pro_vegan_stance':
-    #             # choose from ARGS_PRO
-    #         else
-    #             # choose from ARGS_CON
-    #     return argument
-
-    # def get_next_arg(self, stance):
-    #     return argument
+    def get_new_arg(arg_list):
+            argument = random.choice(x for x in arg_list if x not in self.used_arguments)
+            self.used_arguments.append(argument)
+        return argument
 
     #def get_neutral_statement(self):
         # Choose a neutral statement randomly
@@ -249,32 +244,25 @@ class OxyCSBot(ChatBot):
         # current_arg = random.choice(ARGS_PRO)
         # test = "in on_enter_pro_vegan_stance"
         # return test
-
-        response = "You don't believe in veganism?"
-        return response
+        if size(self.used_arguments) == 0:
+            return "You don't believe in veganism? How sad."
+        else:
+            return self.go_to_state('pro_vegan_stance')
 
     def respond_from_pro_vegan_stance(self, message, tags):
 
-        # Randomly choose current argument
-        current_arg = random.choice(x for x in ARGS_PRO if x not in self.used_arguments)
-
-        # Check against used arguments
-        # while current_arg in self.used_arguments:
-        #     current_arg = random.choice(ARGS_PRO)
-
-        #if ARGS_PRO in used_arguments:
-
         # Add random neutral statement if used_arguments has 3 elements
 
-        # If there are still arguments, go to wait_for_user_response state
+        # If there are still unused arguments, go back to pro_vegan_stance state
         if size(self.used_arguments < 4):
-            self.used_arguments.append(current_arg)
+            current_arg = self.get_new_arg(ARGS_PRO)
             return current_arg
-            # return self.go_to_state('respond_from_pro_vegan_stance')
 
+        elif 'thanks' in tags:
+            return self.finish('thanks')
         # If all arguments are used, end conversation
         else:
-            return self.finish('thanks')
+            return self.finish('success')
 
         test = "in respond_from_pro_vegan_stance"
         return test
@@ -287,7 +275,7 @@ class OxyCSBot(ChatBot):
         #     random.choice(list(ARGS_CON.keys())),
         #     'What do you think?',
         # ])
-        response = "in on_enter_anti_vegan_stance"
+        response = "Ugh, I don't understand how people can do the veganism thing."
         return response
 
     def respond_from_anti_vegan_stance(self, message, tags):
@@ -312,7 +300,7 @@ class OxyCSBot(ChatBot):
         return "Hi there! Have you ever considered veganism?"
 
     def finish_success(self):
-        return 'Great, I am glad you can see my side of the argument.'
+        return "Great, I am glad you can see my side of the argument."
 
     def finish_fail(self):
         return "You make some good points. I have to say I think you are right about this."
