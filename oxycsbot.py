@@ -70,8 +70,6 @@ class OxyCSBot(ChatBot):
         # generic
         'thanks': 'thanks',
         'thank you': 'thanks',
-        'thanks': 'thank you',
-        'thank you': 'thank you',
         'okay': 'success',
         'bye': 'success',
         'yes': 'yes',
