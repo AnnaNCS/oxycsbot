@@ -116,7 +116,7 @@ class OxyCSBot(ChatBot):
         'arg_job_loss' : "Have you ever thought about how many people will loose their jobs?",
         'arg_meat_taste' : "Don't you know the taste of the meat? Would you ever be able to give it up?",
     }
-    
+
     """
     ALL_ARGS = {
         'arg_p1': 'arg_health',
@@ -128,7 +128,7 @@ class OxyCSBot(ChatBot):
         'arg_a3': 'arg_job_loss',
         'arg_a4': 'arg_meat_taste',
     }
-    
+
 
     FILLER_STATEMENTS = [
         'Yeah, I’m not buying it. Could you elaborate?',
@@ -153,16 +153,16 @@ class OxyCSBot(ChatBot):
 
         Returns:
             str: The argument.
-       
+
         args_con = {
             'arg_health' : "Being vegan is very good for your health",
             'arg_environment' : "Veganism impacts the environemtn a lot",
             'arg_poverty' : "Have to write something here",
             'arg_animal_rights' : "Aren't you against the animal cruelty?",
         }
-        return args_con, "What is your opinion"? 
+        return args_con, "What is your opinion"?
     """
-        
+
     # "waiting" state functions
 
     def respond_from_waiting(self, message, tags):
@@ -181,7 +181,7 @@ class OxyCSBot(ChatBot):
         # Use tags and message to determine user stance, then define bot's stance as the opposite
         # If user is neutral/has no opinion, the bot will randomly choose between pro and con
 
-        if 'veganism' in tags: #we might wanna delete this part, as it is unnecessary, the conversation is already about veganism 
+        if 'veganism' in tags: #we might wanna delete this part, as it is unnecessary, the conversation is already about veganism
             for stance in self.STANCES:
                 # If user is pro-vegan, bot takes anti-vegan stance
                 if 'pro_vegan_stance' in tags:
@@ -207,9 +207,9 @@ class OxyCSBot(ChatBot):
                     self.stance = random.choice(STANCES)
 
                     # Or should bot ask more questions to determine user stance?
-         elif 'thanks' in tags:
+        elif 'thanks' in tags:
             return self.finish('thanks')
-         else:
+        else:
             return self.finish('confused')
 
 
@@ -290,18 +290,18 @@ class OxyCSBot(ChatBot):
     # Send a message then go to the default state (waiting)
     def finish_confused(self):
         return "Tell me something about your diet. What do you think of veganism?"
- 
+
     def finish_thanks(self):
         return "You're welcome! It was nice talking to you!"
-    
-    
+
+
     def finish_success(self):
         return 'Great, I am glad you can see my side of the argument.'
 
     def finish_fail(self):
         return "You make some good points. I have to say I think you are right about this."
 
-   
+
 
 if __name__ == '__main__':
     OxyCSBot().chat()
