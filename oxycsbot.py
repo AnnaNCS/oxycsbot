@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """A simple chatbot that debates with the user about veganism"""
 
-# import random # https://pynative.com/python-random-choice/
+import random # https://pynative.com/python-random-choice/
 from chatbot import ChatBot
 
 class OxyCSBot(ChatBot):
