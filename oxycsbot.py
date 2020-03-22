@@ -246,10 +246,8 @@ class OxyCSBot(ChatBot):
         #     'What do you think?',
         # ])
         #current_arg = random.choice(ARGS_PRO)
-        #test = "in on_enter_pro_vegan_stance"
-        return "yeses"
-        #print(random.choice(ARGS_PRO))
-        #
+        test = "in on_enter_pro_vegan_stance"
+        return test
 
     def respond_from_pro_vegan_stance(self, message, tags):
 
