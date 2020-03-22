@@ -182,6 +182,12 @@ class OxyCSBot(ChatBot):
         # If user is neutral/has no opinion, the bot will randomly choose between pro and con
 
         # if 'veganism' in tags: #we might wanna delete this part, as it is unnecessary, the conversation is already about veganism
+
+        if 'thanks' in tags:
+            return self.finish('thanks')
+        else:
+            return self.finish('confused')
+
         for stance in self.STANCES:
             # If user is pro-vegan, bot takes anti-vegan stance
             if 'pro_vegan_stance' in tags:
@@ -202,15 +208,11 @@ class OxyCSBot(ChatBot):
             # If user is neutral, bot chooses randomly between pro and anti vegan stances
             else:
                 # Choose stance randomly
-                # bot_stances = ['pro_vegan_stance', 'anti_vegan_stance']
-                # self.stance = random.choice(bot_stances)
                 self.stance = random.choice(STANCES)
+                return self.go_to_state(self.stance)
 
                 # Or should bot ask more questions to determine user stance?
-        if 'thanks' in tags:
-            return self.finish('thanks')
-        else:
-            return self.finish('confused')
+
 
 
     # ******************** GENERAL STATES (may not be necessary?) ********************
