@@ -245,9 +245,12 @@ class OxyCSBot(ChatBot):
         #     random.choice(list(ARGS_PRO.keys())),
         #     'What do you think?',
         # ])
-        #current_arg = random.choice(ARGS_PRO)
-        test = "in on_enter_pro_vegan_stance"
-        return test
+        current_arg = random.choice(ARGS_PRO)
+        # test = "in on_enter_pro_vegan_stance"
+        # return test
+
+        response = "You don't believe in veganism?"
+        return response
 
     def respond_from_pro_vegan_stance(self, message, tags):
 
