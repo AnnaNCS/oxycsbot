@@ -240,17 +240,12 @@ class OxyCSBot(ChatBot):
     # ******************** PRO-VEGAN STATES ********************
 
     def on_enter_pro_vegan_stance(self):
-        # response = '\n'.join([
-        #     random.choice(list(ARGS_PRO.keys())),
-        #     'What do you think?',
-        # ])
-        # test = "in on_enter_pro_vegan_stance"
-        # return test
+        # if size(self.used_arguments) == 0:
+        #     return "You don't believe in veganism? How sad."
+        # else:
+        #     return "But what about..." # self.go_to_state('pro_vegan_stance')
 
-        if size(self.used_arguments) == 0:
-            return "You don't believe in veganism? How sad."
-        else:
-            return "But what about..." # self.go_to_state('pro_vegan_stance')
+        return "Woah woah wait, you don't believe in veganism? Why not?"
 
     def respond_from_pro_vegan_stance(self, message, tags):
 
@@ -259,16 +254,13 @@ class OxyCSBot(ChatBot):
         # If there are still unused arguments, go back to pro_vegan_stance state
         if size(self.used_arguments < 4):
             current_arg = self.get_new_arg(ARGS_PRO)
-            return current_arg
+            return self.go_to_state('pro_vegan_stance')
 
         elif 'thanks' in tags:
             return self.finish('thanks')
         # If all arguments are used, end conversation
         else:
             return self.finish('success')
-
-        # test = "in respond_from_pro_vegan_stance"
-        # return test
 
 
     # ******************** ANTI-VEGAN STATES ********************
