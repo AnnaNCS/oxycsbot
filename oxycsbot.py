@@ -184,7 +184,7 @@ class OxyCSBot(ChatBot):
         # if 'pro_vegan_stance' in tags or 'anti_vegan_stance' in tags or 'veganism' in tags:
             # Use tags and message to determine user stance, then define bot's stance as the opposite
         # If user is neutral/has no opinion, the bot will randomly choose between pro and con
-        if self.stance == None:
+        if self.stance == None and ('pro_vegan_stance' in tags or 'anti_vegan_stance' in tags or 'veganism' in tags):
 
             # If user is pro-vegan, bot takes anti-vegan stance
             if 'pro_vegan_stance' in tags:
