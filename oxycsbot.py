@@ -216,10 +216,12 @@ class OxyCSBot(ChatBot):
 
         # If user message is unrelated to veganism, choose appropriate response for bot
         elif 'thanks' in tags:
+            self.stance = None
             return self.finish('thanks')
         elif 'hello' in tags:
             return self.finish('hello')
         else:
+            self.stance = None
             return self.finish('confused')
 
 
@@ -251,15 +253,15 @@ class OxyCSBot(ChatBot):
         return current_arg
         # Add random neutral statement if used_arguments has 3 elements
 
-        # If there are still unused arguments, go back to pro_vegan_stance state
-        if len(self.used_arguments < 4):
-            current_arg = random.choice(x for x in ARGS_PRO if x not in self.used_arguments)
-            self.used_arguments.append(argument)
-            return self.go_to_state('pro_vegan_stance')
+        # # If there are still unused arguments, go back to pro_vegan_stance state
+        # if len(self.used_arguments < 4):
+        #     current_arg = random.choice(x for x in ARGS_PRO if x not in self.used_arguments)
+        #     self.used_arguments.append(argument)
+        #     return self.go_to_state('pro_vegan_stance')
 
-        # If all arguments are used, end conversation
-        else:
-            return self.finish('success')
+        # # If all arguments are used, end conversation
+        # else:
+        #     return self.finish('success')
 
 
     # ******************** ANTI-VEGAN STATES ********************
