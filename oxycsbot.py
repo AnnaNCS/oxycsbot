@@ -217,12 +217,6 @@ class OxyCSBot(ChatBot):
 
     # ******************** GENERAL STATES (may not be necessary?) ********************
 
-    # This would be the default 'waiting' state
-    #def wait_for_user_response(self, message, tags):
-        #response = "testing, send help"
-        #return response
-
-
     def get_new_arg(arg_list):
         argument = random.choice(x for x in arg_list if x not in self.used_arguments)
         self.used_arguments.append(argument)
@@ -233,14 +227,10 @@ class OxyCSBot(ChatBot):
         #response = "testing, send help"
         #return response
 
-    # def end_convo(self):
-    #     return something
-
-
     # ******************** PRO-VEGAN STATES ********************
 
     def on_enter_pro_vegan_stance(self):
-        # if size(self.used_arguments) == 0:
+        # if len(self.used_arguments) == 0:
         #     return "You don't believe in veganism? How sad."
         # else:
         #     return "But what about..." # self.go_to_state('pro_vegan_stance')
@@ -252,7 +242,7 @@ class OxyCSBot(ChatBot):
         # Add random neutral statement if used_arguments has 3 elements
 
         # If there are still unused arguments, go back to pro_vegan_stance state
-        if size(self.used_arguments < 4):
+        if len(self.used_arguments < 4):
             current_arg = self.get_new_arg(ARGS_PRO)
             return self.go_to_state('pro_vegan_stance')
 
