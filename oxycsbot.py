@@ -241,7 +241,7 @@ class OxyCSBot(ChatBot):
         if self.stance == None:
             return "Wait, you don't believe in veganism? Why not?"
         else:
-            return self.go_to_state('pro_vegan_stance')
+            return "But what about..." # self.go_to_state('pro_vegan_stance')
 
     def respond_from_pro_vegan_stance(self, message, tags):
         # return "in pro vegan response state"
