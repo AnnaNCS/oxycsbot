@@ -204,21 +204,20 @@ class OxyCSBot(ChatBot):
                 # else:
                 #     return self.go_to_state('anti_vegan_stance')
 
-        # If user is pro-vegan, bot takes anti-vegan stance
-        elif self.stance == 'anti_vegan':
-            return self.go_to_state('anti_vegan_stance')
+        elif len(self.used_arguments) < 4:
+            if self.stance == 'anti_vegan':
+                return self.go_to_state('anti_vegan_stance')
+            else:
+                return self.go_to_state('pro_vegan_stance')
 
-        # If user is anti-vegan, bot takes pro-vegan stance
-        elif self.stance == 'pro_vegan':
-            return self.go_to_state('pro_vegan_stance')
-
-        # If user message is unrelated to veganism, choose appropriate response for bot
-        elif 'thanks' in tags:
-            return self.finish('thanks')
-        elif 'hello' in tags:
-            return self.finish('hello')
         else:
-            return self.finish('confused')
+            # If user message is unrelated to veganism, choose appropriate response for bot
+            if 'thanks' in tags:
+                return self.finish('thanks')
+            elif 'hello' in tags:
+                return self.finish('hello')
+            else:
+                return self.finish('confused')
 
 
     # ******************** GENERAL STATES (may not be necessary?) ********************
