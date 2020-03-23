@@ -229,6 +229,7 @@ class OxyCSBot(ChatBot):
     # ******************** PRO-VEGAN STATES ********************
 
     def on_enter_pro_vegan_stance(self):
+        return "Woah woah wait, you don't believe in veganism? Why not?"
         if len(self.used_arguments) == 0:
             return "Woah woah wait, you don't believe in veganism? Why not?"
         else:
