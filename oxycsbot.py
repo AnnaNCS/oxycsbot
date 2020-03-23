@@ -112,16 +112,16 @@ class OxyCSBot(ChatBot):
     ARGS_PRO = {
          'arg_health': "Being vegan is very good for your health",
          'arg_environment': "Veganism impacts the environment a lot",
-         'arg_poverty': "Have to write something here",
+         'arg_poverty': "A transition to veganism could alleviate poverty.",
          'arg_animal_rights': "Aren't you against animal cruelty?",
     }
 
     # bot has anti-vegan stance
     ARGS_CON = {
-        'arg_agricultural_stress': "Help me out here" ,
+        'arg_agricultural_stress': "Do you know how much land is required to grow the crops needed for a vegan lifestyle? Way more than we're using now!" ,
         'arg_circle_of_life': "Well, I believe that there is a natural circle of life.",
-        'arg_job_loss': "Have you ever thought about how many people will loose their jobs?",
-        'arg_meat_taste': "Don't you know the taste of the meat? Would you ever be able to give it up?",
+        'arg_job_loss': "Have you ever thought about how many people will lose their jobs if everyone became vegan?",
+        'arg_meat_taste': "Don't you like the taste of the meat? Would you ever be able to give it up?",
     }
 
     """
@@ -135,7 +135,6 @@ class OxyCSBot(ChatBot):
         'arg_a3': 'arg_job_loss',
         'arg_a4': 'arg_meat_taste',
     }
-
 
     FILLER_STATEMENTS = [
         'Yeah, I’m not buying it. Could you elaborate?',
@@ -238,7 +237,9 @@ class OxyCSBot(ChatBot):
         # return "Woah woah wait, you don't believe in veganism? Why not?"
 
     def respond_from_pro_vegan_stance(self, message, tags):
-
+        current_arg = random.choice(x for x in ARGS_PRO if x not in self.used_arguments)
+        self.used_arguments.append(argument)
+        return self.go_to_state('pro_vegan_stance')
         # Add random neutral statement if used_arguments has 3 elements
 
         # If there are still unused arguments, go back to pro_vegan_stance state
