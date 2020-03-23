@@ -248,7 +248,7 @@ class OxyCSBot(ChatBot):
 
     def respond_from_pro_vegan_stance(self, message, tags):
         # return "in pro vegan response state"
-        return ARGS_PRO{0}
+        return ARGS_PRO[0]
         current_arg = random.choice(ARGS_PRO.keys())
         self.used_arguments.append(argument)
         # return self.go_to_state('pro_vegan_stance')
