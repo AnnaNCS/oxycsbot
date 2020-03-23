@@ -198,7 +198,7 @@ class OxyCSBot(ChatBot):
 
         # If user is neutral, bot chooses randomly between pro and anti vegan stances
         elif 'veganism' in tags:
-            return "Tell me something about your diet. What do you think of veganism?"
+            return self.finish('neutral')
             # self.stance = random.choice(STANCES)
 
             # if self.stance == 'pro_vegan':
@@ -285,8 +285,11 @@ class OxyCSBot(ChatBot):
 
     # ******************** FINISH STATES ********************
     # Send a message then go to the default state (waiting)
-    def finish_confused(self):
+    def finish_neutral(self):
         return "Tell me something about your diet. What do you think of veganism?"
+
+    def finish_confused(self):
+        return "You've lost me. Could you clarify that?"
 
     def finish_thanks(self):
         return "You're welcome! It was nice talking to you!"
