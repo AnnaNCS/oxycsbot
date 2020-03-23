@@ -244,7 +244,8 @@ class OxyCSBot(ChatBot):
 
     def on_enter_pro_vegan_stance(self):
         # return "why me?"
-        return ARGS_PRO['arg_health']
+        first_arg = ARGS_PRO['arg_health']
+        return first_arg
         # if self.stance == None:
         # if len(self.used_arguments) == 0:
         #     return "Wait, you don't believe in veganism? Why not?"
