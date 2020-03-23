@@ -247,7 +247,8 @@ class OxyCSBot(ChatBot):
         # return "in pro vegan response state"
         current_arg = random.choice(x for x in ARGS_PRO if x not in self.used_arguments)
         self.used_arguments.append(argument)
-        return self.go_to_state('pro_vegan_stance')
+        # return self.go_to_state('pro_vegan_stance')
+        return current_arg
         # Add random neutral statement if used_arguments has 3 elements
 
         # If there are still unused arguments, go back to pro_vegan_stance state
