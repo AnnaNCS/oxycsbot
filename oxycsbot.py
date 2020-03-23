@@ -238,16 +238,13 @@ class OxyCSBot(ChatBot):
     # ******************** PRO-VEGAN STATES ********************
 
     def on_enter_pro_vegan_stance(self):
-        # return "Wait, you don't believe in veganism? Why not?"
         if self.stance == None:
             return "Wait, you don't believe in veganism? Why not?"
         else:
             return self.go_to_state('pro_vegan_stance')
 
-        # return "Woah woah wait, you don't believe in veganism? Why not?"
-
     def respond_from_pro_vegan_stance(self, message, tags):
-        return "in pro vegan response state"
+        # return "in pro vegan response state"
         current_arg = random.choice(x for x in ARGS_PRO if x not in self.used_arguments)
         self.used_arguments.append(argument)
         return self.go_to_state('pro_vegan_stance')
@@ -273,7 +270,7 @@ class OxyCSBot(ChatBot):
         #     random.choice(list(ARGS_CON.keys())),
         #     'What do you think?',
         # ])
-        response = "Ugh, I don't understand how people can do the veganism thing."
+        response = "Ugh, I don't understand how people can do the veganism thing. Why do you believe in it?"
         return response
 
     def respond_from_anti_vegan_stance(self, message, tags):
