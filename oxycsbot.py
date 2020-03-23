@@ -181,11 +181,11 @@ class OxyCSBot(ChatBot):
             str: The message to send to the user.
         """
 
-        if 'pro_vegan_stance' in tags or 'anti_vegan_stance' in tags or 'veganism' in tags:
-            # Use tags and message to determine user stance, then define bot's stance as the opposite
-            # If user is neutral/has no opinion, the bot will randomly choose between pro and con
-            if self.stance == None:
 
+            # Use tags and message to determine user stance, then define bot's stance as the opposite
+        # If user is neutral/has no opinion, the bot will randomly choose between pro and con
+        if self.stance == None:
+            if 'pro_vegan_stance' in tags or 'anti_vegan_stance' in tags or 'veganism' in tags:
                 # If user is pro-vegan, bot takes anti-vegan stance
                 if 'pro_vegan_stance' in tags:
                     self.stance = 'anti_vegan'
@@ -208,25 +208,23 @@ class OxyCSBot(ChatBot):
                 else:
                     return self.finish('neutral')
 
-            # If bot already has a stance, return to the response state for that stance
-            else:
-                if self.stance == 'anti_vegan':
-                    return self.go_to_state('anti_vegan_stance')
-                else:
-                    return self.go_to_state('pro_vegan_stance')
-
-        elif 'reset' in tags:
-            self.stance = None
-            self.used_arguments = []
-            return "Stance and used arguments cleared."
-        # If user message is unrelated to veganism, choose appropriate response for bot
-        elif 'thanks' in tags:
-            self.stance = None
-            return self.finish('thanks')
-        elif 'hello' in tags:
-            return self.finish('hello')
+        # If bot already has a stance, return to the response state for that stance
         else:
-            return self.finish('confused')
+            if self.stance == 'anti_vegan':
+                return self.go_to_state('anti_vegan_stance')
+            elif self.stance == 'pro_vegan':
+                return self.go_to_state('pro_vegan_stance')
+            elif 'reset' in tags:
+                self.stance = None
+                self.used_arguments = []
+                return "Stance and used arguments cleared."
+            # If user message is unrelated to veganism, choose appropriate response for bot
+            elif 'thanks' in tags:
+                return self.finish('thanks')
+            elif 'hello' in tags:
+                return self.finish('hello')
+            else:
+                return self.finish('confused')
 
 
     # ******************** GENERAL STATES (may not be necessary?) ********************
