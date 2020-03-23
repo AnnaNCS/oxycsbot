@@ -182,8 +182,8 @@ class OxyCSBot(ChatBot):
 
         # Use tags and message to determine user stance, then define bot's stance as the opposite
         # If user is neutral/has no opinion, the bot will randomly choose between pro and con
-
         if len(self.used_arguments) == 0:
+
             # If user is pro-vegan, bot takes anti-vegan stance
             if 'pro_vegan_stance' in tags:
                 self.stance = 'anti_vegan'
@@ -196,22 +196,25 @@ class OxyCSBot(ChatBot):
 
             # If user is neutral, bot chooses randomly between pro and anti vegan stances
             elif 'veganism' in tags:
+                # return self.finish('neutral')
+                self.stance = random.choice(STANCES)
+
+                if self.stance == 'pro_vegan':
+                    return self.go_to_state('pro_vegan_stance')
+                else:
+                    return self.go_to_state('anti_vegan_stance')
+            else:
                 return self.finish('neutral')
-                # self.stance = random.choice(STANCES)
 
-                # if self.stance == 'pro_vegan':
-                #     return self.go_to_state('pro_vegan_stance')
-                # else:
-                #     return self.go_to_state('anti_vegan_stance')
-
+        # If bot already has a stance, return to the response state for that stance
         elif len(self.used_arguments) < 4:
             if self.stance == 'anti_vegan':
                 return self.go_to_state('anti_vegan_stance')
             else:
                 return self.go_to_state('pro_vegan_stance')
 
+        # If user message is unrelated to veganism, choose appropriate response for bot
         else:
-            # If user message is unrelated to veganism, choose appropriate response for bot
             if 'thanks' in tags:
                 return self.finish('thanks')
             elif 'hello' in tags:
@@ -235,16 +238,16 @@ class OxyCSBot(ChatBot):
     # ******************** PRO-VEGAN STATES ********************
 
     def on_enter_pro_vegan_stance(self):
-        return "Woah woah wait, you don't believe in veganism? Why not?"
+        return "Wait, you don't believe in veganism? Why not?"
         if len(self.used_arguments) == 0:
-            return "Woah woah wait, you don't believe in veganism? Why not?"
+            return "Wait, you don't believe in veganism? Why not?"
         else:
             return "But what about..." # self.go_to_state('pro_vegan_stance')
 
         # return "Woah woah wait, you don't believe in veganism? Why not?"
 
     def respond_from_pro_vegan_stance(self, message, tags):
-        return "in pro vegan response state"
+        # return "in pro vegan response state"
         current_arg = random.choice(x for x in ARGS_PRO if x not in self.used_arguments)
         self.used_arguments.append(argument)
         return self.go_to_state('pro_vegan_stance')
