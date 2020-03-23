@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """A simple chatbot that debates with the user about veganism"""
 
-import random # https://pynative.com/python-random-choice/
+import random  # https://pynative.com/python-random-choice/
 from chatbot import ChatBot
+
 
 class OxyCSBot(ChatBot):
 
@@ -13,7 +14,7 @@ class OxyCSBot(ChatBot):
     ]
 
     TAGS = {
-        # intent
+        # vegan topic
         'veganism': 'veganism',
         'vegan': 'veganism',
         'vegetarian': 'veganism',
@@ -62,7 +63,7 @@ class OxyCSBot(ChatBot):
         'bbq': 'anti_vegan_stance',
         'against nature': 'anti_vegan_stance',
 
-        # GIVE ARGUMENT DEPENDING ON THE USER'S RESPONSE?
+        # Next phase: convert above tags to referencing specific arguments
         # ex. 'like burgers': 'arg_a4', ...
 
         # generic
@@ -70,11 +71,10 @@ class OxyCSBot(ChatBot):
         'thank you': 'thanks',
         'okay': 'success',
         'bye': 'success',
-        # 'yeah': 'success',
         'not really': 'failure',
         'never': 'failure',
         'probably no': 'failure',
-        'might' : 'success',
+        'might': 'success',
         'possibly': 'success',
         'maybe': 'success',
         'of course': 'success',
@@ -94,14 +94,7 @@ class OxyCSBot(ChatBot):
         'hallo': 'hello',
         'hey': 'hello',
 
-        # # yes/no
-        # 'yes': 'yn',
-        # 'yeah' : 'yn',
-        # 'yep': 'yn',
-        # 'yup': 'yn',
-        # 'no': 'yn',
-        # 'nope': 'yn',
-        'reset': 'reset',
+        'reset': 'reset', # added for testing purposes only
     }
 
     STANCES = [
@@ -111,15 +104,15 @@ class OxyCSBot(ChatBot):
 
     # bot has pro-vegan stance
     ARGS_PRO = {
-         'arg_health': "Being vegan is very good for your health",
-         'arg_environment': "Veganism impacts the environment a lot",
-         'arg_poverty': "A transition to veganism could alleviate poverty.",
-         'arg_animal_rights': "Aren't you against animal cruelty?",
+        'arg_health': "Being vegan is very good for your health",
+        'arg_environment': "Veganism impacts the environment a lot",
+        'arg_poverty': "A transition to veganism could alleviate poverty.",
+        'arg_animal_rights': "Aren't you against animal cruelty?",
     }
 
     # bot has anti-vegan stance
     ARGS_CON = {
-        'arg_agricultural_stress': "Do you know how much land is required to grow the crops needed for a vegan lifestyle? Way more than we're using now!" ,
+        'arg_agricultural_stress': "Do you know how much land is required to grow the crops needed for a vegan lifestyle? Way more than we're using now!",
         'arg_circle_of_life': "Well, I believe that there is a natural circle of life.",
         'arg_job_loss': "Have you ever thought about how many people will lose their jobs if everyone became vegan?",
         'arg_meat_taste': "Don't you like the taste of the meat? Would you ever be able to give it up?",
@@ -150,25 +143,7 @@ class OxyCSBot(ChatBot):
         self.stance = None # bot's stance is determined by user stance
         self.used_arguments = [] # keeps track of which arguments have been used to avoid repetition
 
-    """
-    def get_args_pro(self, args_pro):
-        Pick a pro argument.
-
-        Arguments:
-
-        Returns:
-            str: The argument.
-
-        args_con = {
-            'arg_health' : "Being vegan is very good for your health",
-            'arg_environment' : "Veganism impacts the environemtn a lot",
-            'arg_poverty' : "Have to write something here",
-            'arg_animal_rights' : "Aren't you against the animal cruelty?",
-        }
-        return args_con, "What is your opinion"?
-    """
-
-    # "waiting" state functions
+    # ******************** WAITING STATE FUNCTIONS ********************
 
     def respond_from_waiting(self, message, tags):
         """Decide what state to go to from the "waiting" state.
@@ -184,7 +159,7 @@ class OxyCSBot(ChatBot):
         if 'pro_vegan_stance' in tags or 'anti_vegan_stance' in tags or 'veganism' in tags:
             # Use tags and message to determine user stance, then define bot's stance as the opposite
             # If user is neutral/has no opinion, the bot will randomly choose between pro and con
-            if self.stance == None:
+            if self.stance is None:
 
                 # If user is pro-vegan, bot takes anti-vegan stance
                 if 'pro_vegan_stance' in tags:
@@ -215,35 +190,24 @@ class OxyCSBot(ChatBot):
                 else:
                     return self.go_to_state('pro_vegan_stance')
 
-        elif 'reset' in message:
+        # For testing purposes only
+        elif 'reset' in tags:
             self.stance = None
             self.used_arguments = []
             return "Stance and used arguments cleared."
+        elif 'hello' in tags:
+            return self.finish('hello')
+
         # If user message is unrelated to veganism, choose appropriate response for bot
         elif 'thanks' in tags:
             return self.finish('thanks')
-        elif 'hello' in tags:
-            return self.finish('hello')
         else:
             return self.finish('confused')
-
-
-    # ******************** GENERAL STATES (may not be necessary?) ********************
-
-    # def get_new_arg(arg_list):
-    #     argument = random.choice(x for x in arg_list if x not in self.used_arguments)
-    #     self.used_arguments.append(argument)
-    #     return argument
-
-    #def get_neutral_statement(self):
-        # Choose a neutral statement randomly
-        #response = "testing, send help"
-        #return response
 
     # ******************** PRO-VEGAN STATES ********************
 
     def on_enter_pro_vegan_stance(self):
-        return "why me?"
+        # return "entered pro vegan stance"
         first_arg = ARGS_PRO['arg_health']
         return first_arg
         # if self.stance == None:
@@ -259,7 +223,6 @@ class OxyCSBot(ChatBot):
         self.used_arguments.append(argument)
         # return self.go_to_state('pro_vegan_stance')
         return current_arg
-        # Add random neutral statement if used_arguments has 3 elements
 
         # # If there are still unused arguments, go back to pro_vegan_stance state
         # if len(self.used_arguments < 4):
@@ -271,26 +234,20 @@ class OxyCSBot(ChatBot):
         # else:
         #     return self.finish('success')
 
-
     # ******************** ANTI-VEGAN STATES ********************
 
     def on_enter_anti_vegan_stance(self):
-        # response = '\n'.join([
-        #     random.choice(list(ARGS_CON.keys())),
-        #     'What do you think?',
-        # ])
-        response = "Ugh, I don't understand how people can do the veganism thing. Why do you believe in it?"
-        return response
+        return "entered anti vegan stance"
+        # response = "Ugh, I don't understand how people can do the veganism thing. Why do you believe in it?"
+        # return response
 
     def respond_from_anti_vegan_stance(self, message, tags):
-        response = "in respond_from_anti_vegan_stance"
-        # response = '\n'.join([
-        #     random.choice(list(ARGS_CON.keys())),
-        #     'What do you think?',
-        # ])
-        return response
-
-
+        # return "in anti vegan response state"
+        return ARGS_CON['arg_meat_taste']
+        current_arg = random.choice(ARGS_CON.keys())
+        self.used_arguments.append(argument)
+        # return self.go_to_state('anti_vegan_stance')
+        return current_arg
 
     # ******************** FINISH STATES ********************
     # Send a message then go to the default state (waiting)
@@ -311,7 +268,6 @@ class OxyCSBot(ChatBot):
 
     def finish_fail(self):
         return "You make some good points. I have to say I think you are right about this."
-
 
 
 if __name__ == '__main__':
