@@ -243,11 +243,12 @@ class OxyCSBot(ChatBot):
         # if self.stance == None:
         if len(self.used_arguments) == 0:
             return "Wait, you don't believe in veganism? Why not?"
-        else:
-            return "I have a stance" # self.go_to_state('pro_vegan_stance')
+        # else:
+        #     return "I have a stance" # self.go_to_state('pro_vegan_stance')
 
     def respond_from_pro_vegan_stance(self, message, tags):
         # return "in pro vegan response state"
+        return ARGS_PRO{0}
         current_arg = random.choice(ARGS_PRO.keys())
         self.used_arguments.append(argument)
         # return self.go_to_state('pro_vegan_stance')
