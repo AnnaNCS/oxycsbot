@@ -198,12 +198,13 @@ class OxyCSBot(ChatBot):
 
         # If user is neutral, bot chooses randomly between pro and anti vegan stances
         elif 'veganism' in tags:
-            self.stance = random.choice(STANCES)
+            return "Tell me something about your diet. What do you think of veganism?"
+            # self.stance = random.choice(STANCES)
 
-            if self.stance == 'pro_vegan':
-                return self.go_to_state('pro_vegan_stance')
-            else:
-                return self.go_to_state('anti_vegan_stance')
+            # if self.stance == 'pro_vegan':
+            #     return self.go_to_state('pro_vegan_stance')
+            # else:
+            #     return self.go_to_state('anti_vegan_stance')
 
         # If user message is unrelated to veganism, choose appropriate response for bot
         elif 'thanks' in tags:
