@@ -179,8 +179,8 @@ class OxyCSBot(ChatBot):
         Returns:
             str: The message to send to the user.
         """
-        self.stance = None
-        self.used_arguments = []
+        # self.stance = None
+        # self.used_arguments = []
 
         # Use tags and message to determine user stance, then define bot's stance as the opposite
         # If user is neutral/has no opinion, the bot will randomly choose between pro and con
