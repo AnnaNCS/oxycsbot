@@ -214,9 +214,10 @@ class OxyCSBot(ChatBot):
                 else:
                     return self.go_to_state('pro_vegan_stance')
 
-        elif message == 'reset':
+        elif 'reset' in message:
             self.stance = None
             self.used_arguments = []
+            return "Stance and used arguments cleared."
         # If user message is unrelated to veganism, choose appropriate response for bot
         elif 'thanks' in tags:
             self.stance = None
