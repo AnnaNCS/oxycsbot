@@ -21,11 +21,10 @@ class OxyCSBot(ChatBot):
         'diet': 'veganism',
         'food': 'veganism',
 
-        # DETERMINE BOT STANCE BASED ON USER STANCE
-
         # pro-vegan
         'pro': 'pro_vegan_stance',
-        'animal cruelty': 'pro_vegan_stance', # maybe instead of stance do the specific argument instead?
+        'animal cruelty': 'pro_vegan_stance',
+        'animal rights': 'pro_vegan_stance',
         'healthy': 'pro_vegan_stance',
         'better for you': 'pro_vegan_stance',
         'poverty': 'pro_vegan_stance',
@@ -35,11 +34,13 @@ class OxyCSBot(ChatBot):
         'environmental': 'pro_vegan_stance',
         'save the environment': 'pro_vegan_stance',
         'eco-friendly': 'pro_vegan_stance',
+        'eco friendly': 'pro_vegan_stance',
+        'eco food': 'pro_vegan_stance',
+        'eco': 'pro_vegan_stance',
         'sustainable': 'pro_vegan_stance',
         'ethics': 'pro_vegan_stance',
         'ethical': 'pro_vegan_stance',
         'unethical': 'pro_vegan_stance',
-        'eco food': 'pro_vegan_stance',
 
         # anti-vegan
         'con': 'anti_vegan_stance',
@@ -59,11 +60,9 @@ class OxyCSBot(ChatBot):
         'ribs': 'anti_vegan_stance',
         'barbecue': 'anti_vegan_stance',
         'bbq': 'anti_vegan_stance',
-        'against nature' : 'anti_vegan_stance',
+        'against nature': 'anti_vegan_stance',
 
-        # neutral tags?
-
-        # GIVE ARGUMENT DEPENDING ON THE USER'S RESPONSE
+        # GIVE ARGUMENT DEPENDING ON THE USER'S RESPONSE?
         # ex. 'like burgers': 'arg_a4', ...
 
         # generic
@@ -71,12 +70,7 @@ class OxyCSBot(ChatBot):
         'thank you': 'thanks',
         'okay': 'success',
         'bye': 'success',
-        'yes': 'yes',
-        'yeah' : 'yes',
-        'yep': 'yes',
-        'yeah': 'success',
-        # 'no': 'no',
-        # 'nope': 'no',
+        # 'yeah': 'success',
         'not really': 'failure',
         'never': 'failure',
         'probably no': 'failure',
@@ -99,6 +93,14 @@ class OxyCSBot(ChatBot):
         'sup': 'hello',
         'hallo': 'hello',
         'hey': 'hello',
+
+        # yes/no
+        'yes': 'yn',
+        'yeah' : 'yn',
+        'yep': 'yn',
+        'yup': 'yn',
+        'no': 'yn',
+        'nope': 'yn',
     }
 
     STANCES = [
@@ -242,13 +244,12 @@ class OxyCSBot(ChatBot):
         #     random.choice(list(ARGS_PRO.keys())),
         #     'What do you think?',
         # ])
-        # current_arg = random.choice(ARGS_PRO)
         # test = "in on_enter_pro_vegan_stance"
         # return test
         if size(self.used_arguments) == 0:
             return "You don't believe in veganism? How sad."
-        else:
-            return self.go_to_state('respond_from_pro_vegan_stance')
+        # else:
+        #     return null # self.go_to_state('pro_vegan_stance')
 
     def respond_from_pro_vegan_stance(self, message, tags):
 
