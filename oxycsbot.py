@@ -217,10 +217,10 @@ class OxyCSBot(ChatBot):
 
     # ******************** GENERAL STATES (may not be necessary?) ********************
 
-    def get_new_arg(arg_list):
-        argument = random.choice(x for x in arg_list if x not in self.used_arguments)
-        self.used_arguments.append(argument)
-        return argument
+    # def get_new_arg(arg_list):
+    #     argument = random.choice(x for x in arg_list if x not in self.used_arguments)
+    #     self.used_arguments.append(argument)
+    #     return argument
 
     #def get_neutral_statement(self):
         # Choose a neutral statement randomly
@@ -243,7 +243,8 @@ class OxyCSBot(ChatBot):
 
         # If there are still unused arguments, go back to pro_vegan_stance state
         if len(self.used_arguments < 4):
-            current_arg = self.get_new_arg(ARGS_PRO)
+            current_arg = random.choice(x for x in ARGS_PRO if x not in self.used_arguments)
+            self.used_arguments.append(argument)
             return self.go_to_state('pro_vegan_stance')
 
         elif 'thanks' in tags:
