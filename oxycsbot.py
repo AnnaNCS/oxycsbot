@@ -101,6 +101,7 @@ class OxyCSBot(ChatBot):
         # 'yup': 'yn',
         # 'no': 'yn',
         # 'nope': 'yn',
+        'reset': 'reset',
     }
 
     STANCES = [
@@ -214,7 +215,7 @@ class OxyCSBot(ChatBot):
                 else:
                     return self.go_to_state('pro_vegan_stance')
 
-        elif 'reset' in message:
+        elif 'reset' in tags:
             self.stance = None
             self.used_arguments = []
             return "Stance and used arguments cleared."
