@@ -214,6 +214,9 @@ class OxyCSBot(ChatBot):
                 else:
                     return self.go_to_state('pro_vegan_stance')
 
+        elif message == 'reset':
+            self.stance = None
+            self.used_arguments = []
         # If user message is unrelated to veganism, choose appropriate response for bot
         elif 'thanks' in tags:
             self.stance = None
@@ -248,7 +251,7 @@ class OxyCSBot(ChatBot):
 
     def respond_from_pro_vegan_stance(self, message, tags):
         # return "in pro vegan response state"
-        return ARGS_PRO[0]
+        return ARGS_PRO[1]
         current_arg = random.choice(ARGS_PRO.keys())
         self.used_arguments.append(argument)
         # return self.go_to_state('pro_vegan_stance')
@@ -298,7 +301,7 @@ class OxyCSBot(ChatBot):
         return "You're welcome! It was nice talking to you!"
 
     def finish_hello(self):
-        return "Hi there! Have you ever considered veganism?"
+        return "Hello to you too! :)"
 
     def finish_success(self):
         return "Great, I am glad you can see my side of the argument."
