@@ -94,13 +94,13 @@ class OxyCSBot(ChatBot):
         'hallo': 'hello',
         'hey': 'hello',
 
-        # yes/no
-        'yes': 'yn',
-        'yeah' : 'yn',
-        'yep': 'yn',
-        'yup': 'yn',
-        'no': 'yn',
-        'nope': 'yn',
+        # # yes/no
+        # 'yes': 'yn',
+        # 'yeah' : 'yn',
+        # 'yep': 'yn',
+        # 'yup': 'yn',
+        # 'no': 'yn',
+        # 'nope': 'yn',
     }
 
     STANCES = [
@@ -245,7 +245,7 @@ class OxyCSBot(ChatBot):
 
     def respond_from_pro_vegan_stance(self, message, tags):
         # return "in pro vegan response state"
-        current_arg = random.choice(x for x in ARGS_PRO if x not in self.used_arguments)
+        current_arg = random.choice(ARGS_PRO.keys())
         self.used_arguments.append(argument)
         # return self.go_to_state('pro_vegan_stance')
         return current_arg
@@ -257,8 +257,6 @@ class OxyCSBot(ChatBot):
             self.used_arguments.append(argument)
             return self.go_to_state('pro_vegan_stance')
 
-        elif 'thanks' in tags:
-            return self.finish('thanks')
         # If all arguments are used, end conversation
         else:
             return self.finish('success')
