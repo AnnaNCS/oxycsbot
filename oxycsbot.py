@@ -221,7 +221,6 @@ class OxyCSBot(ChatBot):
         elif 'hello' in tags:
             return self.finish('hello')
         else:
-            self.stance = None
             return self.finish('confused')
 
 
@@ -240,7 +239,7 @@ class OxyCSBot(ChatBot):
     # ******************** PRO-VEGAN STATES ********************
 
     def on_enter_pro_vegan_stance(self):
-        return "why me?"
+        # return "why me?"
         if self.stance == None:
             return "Wait, you don't believe in veganism? Why not?"
         else:
