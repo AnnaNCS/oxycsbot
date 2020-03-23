@@ -213,14 +213,14 @@ class OxyCSBot(ChatBot):
                     return self.go_to_state('anti_vegan_stance')
                 else:
                     return self.go_to_state('pro_vegan_stance')
+
         # If user message is unrelated to veganism, choose appropriate response for bot
+        elif 'thanks' in tags:
+            return self.finish('thanks')
+        elif 'hello' in tags:
+            return self.finish('hello')
         else:
-            if 'thanks' in tags:
-                return self.finish('thanks')
-            elif 'hello' in tags:
-                return self.finish('hello')
-            else:
-                return self.finish('confused')
+            return self.finish('confused')
 
 
     # ******************** GENERAL STATES (may not be necessary?) ********************
